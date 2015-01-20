@@ -13,6 +13,6 @@ public class GreenFingersGardening {
     }
 
     public Lawn getStandardLawn() {
-        return new Lawn(2.2);
+        return new Lawn(2);
     }
 }

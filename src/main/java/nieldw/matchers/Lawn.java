@@ -4,13 +4,13 @@ package nieldw.matchers;
  * Simple implementation of a grass lawn, only has a length in cm.
  */
 public class Lawn {
-    private double length;
+    private int length;
 
-    public Lawn(double length) {
+    public Lawn(int length) {
         this.length = length;
     }
 
-    public double getLength() {
+    public int getLength() {
         return length;
     }
 }
