@@ -1,5 +1,6 @@
 package nieldw.matchers.service;
 
+import nieldw.matchers.Rooms;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,15 @@ public class TidySpacesHousekeepersTest {
 
     @Test
     public void testGetStandardHouseRooms_shouldReturnRoomsWithStandardHouseValues() throws Exception {
-        fail("TODO : Implement test");
+        // Exercise SUT
+        Rooms standardHouseRooms = housekeepersSUT.getStandardHouseRooms();
+
+        // Verify behaviour
+        assertEquals(3, standardHouseRooms.getBedrooms());
+        assertEquals(2, standardHouseRooms.getBathrooms());
+        assertEquals(2, standardHouseRooms.getLivingAreas());
+        assertEquals(1, standardHouseRooms.getOutdoorAreas());
     }
+
+    // Suppose you have several tests and you have to check all the fields every time?
 }
