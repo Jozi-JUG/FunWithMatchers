@@ -1,6 +1,7 @@
 package nieldw.example.matchers.builder.dto;
 
 import nieldw.example.matchers.dto.ContactDetailsDTO;
+import nieldw.example.matchers.dto.PersonDTO;
 
 /**
  *
@@ -9,6 +10,7 @@ public class ContactDetailsDTOBuilder {
 
     private long id;
     private long personId;
+    private PersonDTO personDTO;
     private String telephoneNumber = "default telephone number";
     private String cellphoneNumber = "default cellphone number";
     private String postalAddress = "default postal address";
@@ -28,6 +30,11 @@ public class ContactDetailsDTOBuilder {
 
     public ContactDetailsDTOBuilder withPersonId(long personId) {
         this.personId = personId;
+        return this;
+    }
+
+    public ContactDetailsDTOBuilder withPersonDTO(PersonDTO personDTO) {
+        this.personDTO = personDTO;
         return this;
     }
 
@@ -56,6 +63,8 @@ public class ContactDetailsDTOBuilder {
     }
 
     public ContactDetailsDTO build() {
-        return new ContactDetailsDTO(id, personId, telephoneNumber, cellphoneNumber, postalAddress, homeAddress);
+        ContactDetailsDTO contactDetailsDTO = new ContactDetailsDTO(id, personId, telephoneNumber, cellphoneNumber, postalAddress, homeAddress);
+        contactDetailsDTO.setPerson(personDTO);
+        return contactDetailsDTO;
     }
 }

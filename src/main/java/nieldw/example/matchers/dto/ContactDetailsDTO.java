@@ -11,6 +11,7 @@ public class ContactDetailsDTO implements Serializable {
 
     private long id;
     private long personId;
+    private PersonDTO person;
     private String telephoneNumber;
     private String cellphoneNumber;
     private String postalAddress;
@@ -47,6 +48,14 @@ public class ContactDetailsDTO implements Serializable {
 
     public String getHomeAddress() {
         return homeAddress;
+    }
+
+    public PersonDTO getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonDTO person) {
+        this.person = person;
     }
 }
 
