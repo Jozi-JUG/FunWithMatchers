@@ -1,6 +1,7 @@
 package nieldw.example.matchers.factory;
 
 import nieldw.example.matchers.dto.ContactDetailsDTO;
+import nieldw.example.matchers.dto.PersonDTO;
 import nieldw.example.matchers.entity.ContactDetails;
 import nieldw.example.matchers.entity.Person;
 import org.junit.Test;
@@ -12,6 +13,10 @@ import static nieldw.example.matchers.builder.dto.PersonDTOBuilder.aPersonDTO;
 import static nieldw.example.matchers.builder.entity.ContactDetailsBuilder.aContactDetails;
 import static nieldw.example.matchers.builder.entity.PersonBuilder.aPerson;
 import static nieldw.example.matchers.matcher.HasContactDetailsDTOBeenCreatedCorrectly.hasSameStateAs;
+import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.same;
+import static org.mockito.Mockito.*;
 
 public class ContactDetailsDtoFactoryTest {
 
@@ -28,7 +33,8 @@ public class ContactDetailsDtoFactoryTest {
     @Test
     public void testBuildThinContactDetailsDTO() throws Exception {
         // Set up fixture
-        setUpFixture();
+        contactDetailsDtoFactory = new ContactDetailsDtoFactory(new PersonDtoFactory());
+
         ContactDetails contactDetails = aContactDetails()
                 .withId(CONTACT_DETAILS_ID)
                 .withPersonId(PERSON_ID)
@@ -59,7 +65,8 @@ public class ContactDetailsDtoFactoryTest {
     @Test
     public void testBuild_shouldAlsoPopulatePersonDTO() {
         // Set up fixture
-        setUpFixture();
+        contactDetailsDtoFactory = new ContactDetailsDtoFactory(new PersonDtoFactory());
+
         Person person = aPerson()
                 .withId(PERSON_ID)
                 .withName(SOME_PERSON_NAME)
@@ -92,7 +99,44 @@ public class ContactDetailsDtoFactoryTest {
         assertThat(returnedContactDetailsDTO, sameBeanAs(expectedContactDetails));
     }
 
-    private void setUpFixture() {
-        contactDetailsDtoFactory = new ContactDetailsDtoFactory(new PersonDtoFactory());
+    /**
+     * Show argument matchers.
+     * Show shazamcrest .ignore()
+     */
+    @Test
+    public void testBuildWithPersonMock() {
+        // Set up fixture
+        PersonDtoFactory mockPersonDtoFactory = mock(PersonDtoFactory.class);
+        contactDetailsDtoFactory = new ContactDetailsDtoFactory(mockPersonDtoFactory);
+        Person person = aPerson()
+                .withId(PERSON_ID)
+                .withName(SOME_PERSON_NAME)
+                .build();
+        ContactDetails contactDetails = aContactDetails()
+                .withId(CONTACT_DETAILS_ID)
+                .withPersonId(PERSON_ID)
+                .withTelephoneNumber(SOME_TELEPHONE_NUMBER)
+                .withCellphoneNumber(SOME_CELLPHONE_NUMBER)
+                .withPostalAddress(SOME_POSTAL_ADDRESS)
+                .withHomeAddress(SOME_HOME_ADDRESS)
+                .build();
+        ContactDetailsDTO expectedContactDetails = aContactDetailsDTO()
+                .withId(CONTACT_DETAILS_ID)
+                .withPersonId(PERSON_ID)
+                .withTelephoneNumber(SOME_TELEPHONE_NUMBER)
+                .withCellphoneNumber(SOME_CELLPHONE_NUMBER)
+                .withPostalAddress(SOME_POSTAL_ADDRESS)
+                .withHomeAddress(SOME_HOME_ADDRESS)
+                .build();
+
+        // Set expectations
+        when(mockPersonDtoFactory.build(any(Person.class))).thenReturn(aPersonDTO().build());
+
+        // Exercise SUT
+        ContactDetailsDTO returnedContactDetailsDTO = contactDetailsDtoFactory.build(contactDetails, person);
+
+        // Verify behaviour
+        verify(mockPersonDtoFactory).build(same(person));
+        assertThat(returnedContactDetailsDTO, is(sameBeanAs(expectedContactDetails).ignoring(PersonDTO.class)));
     }
 }
