@@ -36,8 +36,6 @@ public class ContactDetailsDtoFactoryTest {
         assertEquals(CONTACT_DETAILS_ID, contactDetailsDTO.getId());
         assertEquals(PERSON_ID, contactDetailsDTO.getPersonId());
         assertEquals(SOME_TELEPHONE_NUMBER, contactDetailsDTO.getTelephoneNumber());
-        assertEquals(SOME_CELLPHONE_NUMBER, contactDetailsDTO.getCellphoneNumber());
-        assertEquals(SOME_POSTAL_ADDRESS, contactDetailsDTO.getPostalAddress());
-        assertEquals(SOME_HOME_ADDRESS, contactDetailsDTO.getHomeAddress());
+        /* ... add checks ... */
     }
 }
