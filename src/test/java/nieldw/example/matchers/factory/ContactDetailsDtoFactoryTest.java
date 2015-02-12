@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import static nieldw.example.matchers.builder.dto.ContactDetailsDTOBuilder.aContactDetailsDTO;
 import static nieldw.example.matchers.builder.entity.ContactDetailsBuilder.aContactDetails;
-import static nieldw.example.matchers.matcher.HasContactDetailsDTOBeenCreatedCorrectly.hasSameStateAs;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDetailsDtoFactoryTest {
 
@@ -43,6 +41,6 @@ public class ContactDetailsDtoFactoryTest {
         ContactDetailsDTO returnedContactDetailsDTO = contactDetailsDtoFactory.buildThinContactDetailsDTO(contactDetails);
 
         // Verify behaviour
-        assertThat(returnedContactDetailsDTO, hasSameStateAs(expectedContactDetails));
+        /* ... assert using matcher ... */
     }
 }

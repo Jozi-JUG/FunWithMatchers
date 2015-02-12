@@ -20,23 +20,13 @@ public class HasContactDetailsDTOBeenCreatedCorrectly extends TypeSafeMatcher<Co
 
     @Override
     protected boolean matchesSafely(ContactDetailsDTO item) {
-        return item.getId() == itemToBeComparedTo.getId() &&
-                item.getPersonId() == itemToBeComparedTo.getPersonId() &&
-                item.getCellphoneNumber().equals(itemToBeComparedTo.getCellphoneNumber()) &&
-                item.getTelephoneNumber().equals(itemToBeComparedTo.getTelephoneNumber()) &&
-                item.getHomeAddress().equals(itemToBeComparedTo.getHomeAddress()) &&
-                item.getPostalAddress().equals(itemToBeComparedTo.getPostalAddress());
+        return false /* ... check state ... */;
     }
 
     @Override
     public void describeTo(Description description) {
         description.appendText("a ContactDetailsDTO with the following state:");
-        description.appendText("\nId: ").appendValue(itemToBeComparedTo.getId());
-        description.appendText("\nPersonId: ").appendValue(itemToBeComparedTo.getPersonId());
-        description.appendText("\nCellphoneNumber: ").appendValue(itemToBeComparedTo.getCellphoneNumber());
-        description.appendText("\nTelephoneNumber: ").appendValue(itemToBeComparedTo.getTelephoneNumber());
-        description.appendText("\nHomeAddress: ").appendValue(itemToBeComparedTo.getHomeAddress());
-        description.appendText("\nPostalAddress: ").appendValue(itemToBeComparedTo.getPostalAddress());
+        /* ... describe each field ... */
     }
 
     @Override
