@@ -21,7 +21,7 @@ public class ContactDetailsDtoFactory {
 
     public ContactDetailsDTO build(ContactDetails contactDetails, Person person) {
         ContactDetailsDTO contactDetailsDTO = new ContactDetailsDTO(contactDetails.getId(), contactDetails.getPersonId(), contactDetails.getTelephoneNumber(), contactDetails.getCellphoneNumber(), contactDetails.getPostalAddress(), contactDetails.getHomeAddress());
-        contactDetailsDTO.setPerson(personDtoFactory.build(person));
+//        contactDetailsDTO.setPerson(personDtoFactory.build(person));
         return contactDetailsDTO;
     }
 }

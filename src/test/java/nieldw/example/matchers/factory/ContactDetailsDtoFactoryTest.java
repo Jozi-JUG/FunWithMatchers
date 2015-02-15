@@ -6,9 +6,7 @@ import nieldw.example.matchers.entity.Person;
 import org.junit.Test;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
-import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static nieldw.example.matchers.builder.dto.ContactDetailsDTOBuilder.aContactDetailsDTO;
-import static nieldw.example.matchers.builder.dto.PersonDTOBuilder.aPersonDTO;
 import static nieldw.example.matchers.builder.entity.ContactDetailsBuilder.aContactDetails;
 import static nieldw.example.matchers.builder.entity.PersonBuilder.aPerson;
 import static nieldw.example.matchers.matcher.HasContactDetailsDTOBeenCreatedCorrectly.hasSameStateAs;
@@ -75,10 +73,7 @@ public class ContactDetailsDtoFactoryTest {
         ContactDetailsDTO expectedContactDetails = aContactDetailsDTO()
                 .withId(CONTACT_DETAILS_ID)
                 .withPersonId(PERSON_ID)
-                .withPersonDTO(aPersonDTO()
-                        .withId(PERSON_ID)
-                        .withName(SOME_PERSON_NAME)
-                        .build())
+                /* ... add PersonDTO ...*/
                 .withTelephoneNumber(SOME_TELEPHONE_NUMBER)
                 .withCellphoneNumber(SOME_CELLPHONE_NUMBER)
                 .withPostalAddress(SOME_POSTAL_ADDRESS)
@@ -89,7 +84,7 @@ public class ContactDetailsDtoFactoryTest {
         ContactDetailsDTO returnedContactDetailsDTO = contactDetailsDtoFactory.build(contactDetails, person);
 
         // Verify behaviour
-        assertThat(returnedContactDetailsDTO, sameBeanAs(expectedContactDetails));
+        /* ... assert ... */
     }
 
     private void setUpFixture() {
