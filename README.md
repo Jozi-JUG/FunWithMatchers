@@ -33,3 +33,7 @@ Look at the labels in the commit history for each of the above.
 * *FUTURE: Alternative to argument matchers - captors*
     1. *Normal use*
     1. *When to use - see mockito docs*
+    
+## Live templates for IntelliJ
+[This settings jar](settings.jar) contains live templates for IntelliJ, plus a file template, which can be used to
+speed up writing custom matchers. Import it into IntelliJ.
