@@ -1,7 +1,10 @@
 # FunWithMatchers
-A demo Java project to illustrate the usage of matchers.
 
-This project illustrates the following use cases:
+_Often the results of a method under test is verified by checking the state of the returned object. This quickly becomes cumbersome if there are even just a handful of fields to check, and more so if you have multiple tests checking the same fields! In this brief talk I will explore and demonstrate how using matchers can make your tests much more succinct and readable. I will be looking at writing custom Hamcrest matchers, using Shazamcrest, and briefly demonstrate how to use argument matchers to check the state of arguments being passed to mock collaborators._
+
+This is a demo Java project to illustrate the usage of matchers.
+
+## This project illustrates the following use cases:
 
 1. No matchers: Using only `assertEquals()`.
 1. Rolling your own custom **Hamcrest** `TypeSafeMatcher`.
