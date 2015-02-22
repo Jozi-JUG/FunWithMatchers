@@ -22,10 +22,10 @@ public class HasContactDetailsDTOBeenCreatedCorrectly extends TypeSafeMatcher<Co
     protected boolean matchesSafely(ContactDetailsDTO item) {
         return item.getId() == itemToBeComparedTo.getId() &&
                 item.getPersonId() == itemToBeComparedTo.getPersonId() &&
-                item.getCellphoneNumber().equals(itemToBeComparedTo.getCellphoneNumber()) &&
-                item.getTelephoneNumber().equals(itemToBeComparedTo.getTelephoneNumber()) &&
-                item.getHomeAddress().equals(itemToBeComparedTo.getHomeAddress()) &&
-                item.getPostalAddress().equals(itemToBeComparedTo.getPostalAddress());
+                Objects.equals(item.getCellphoneNumber(), itemToBeComparedTo.getCellphoneNumber()) &&
+                Objects.equals(item.getTelephoneNumber(), itemToBeComparedTo.getTelephoneNumber()) &&
+                Objects.equals(item.getHomeAddress(), itemToBeComparedTo.getHomeAddress()) &&
+                Objects.equals(item.getPostalAddress(), itemToBeComparedTo.getPostalAddress());
     }
 
     @Override
